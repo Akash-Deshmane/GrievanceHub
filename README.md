@@ -23,6 +23,18 @@
 
 ## 🏗 Architecture
 GrievanceHub utilizes a modern three-tier architecture that completely decouples the client interface from the backend business logic and database.
+
+```mermaid
+graph TD
+    Client["💻 React Frontend\n(Vite, Tailwind, Context API)"]
+    API["⚙️ Express REST API\n(Node.js, Multer, JWT)"]
+    DB[(🍃 MongoDB\n(Mongoose ODM))]
+
+    Client -- "RESTful JSON (Axios)" --> API
+    Client -- "Multipart/Form-Data (Images)" --> API
+    API -- "Mongoose Schema/Queries" --> DB
+```
+
 - **Frontend (Client):** A Vite-powered React application with state managed via React Context. UI components are built ground-up using Tailwind CSS.
 - **Backend (Server):** An Express.js REST API running on Node.js. It handles routing, middleware validation, and cryptographic security (bcrypt & JWT).
 - **Database (Data Layer):** MongoDB acts as the NoSQL document store, structured with Mongoose schemas featuring virtuals and pre-save hooks.
@@ -32,6 +44,12 @@ GrievanceHub utilizes a modern three-tier architecture that completely decouples
 - **Priority-Based Routing:** Complaints are categorized by urgency (Low, Medium, High, Critical) and department, ensuring immediate attention is given to pressing issues.
 - **Local File Management:** Secure implementation of `multer` disk storage allowing users to attach evidence images to complaints and update their profile pictures.
 - **Real-Time Status Tracking:** End-to-end transparency where students can view their grievance lifecycle (Pending ➔ In Progress ➔ Resolved).
+
+## 🗄️ Database Architecture
+The MongoDB database uses a highly relational NoSQL structure, utilizing `ObjectId` references to bind entities together efficiently:
+- **Users:** Stores encrypted credentials, RBAC roles (`student`, `dept_admin`, `super_admin`), and avatar references.
+- **Departments & Categories:** Maps organizational units (e.g., IT, Academics, Hostel) to route complaints to the correct administrators automatically.
+- **Complaints:** The core transaction collection. It tracks the grievance lifecycle, mapping `student` to a `department` and dynamically logging status updates over time.
 
 ## 🔐 Roles & Permissions
 The system enforces strict Role-Based Access Control (RBAC) across three primary entities:
