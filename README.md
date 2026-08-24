@@ -26,9 +26,9 @@ GrievanceHub utilizes a modern three-tier architecture that completely decouples
 
 ```mermaid
 graph TD
-    Client["💻 React Frontend\n(Vite, Tailwind, Context API)"]
-    API["⚙️ Express REST API\n(Node.js, Multer, JWT)"]
-    DB[(🍃 MongoDB\n(Mongoose ODM))]
+    Client["💻 React Frontend<br/>(Vite, Tailwind, Context API)"]
+    API["⚙️ Express REST API<br/>(Node.js, Multer, JWT)"]
+    DB[("🍃 MongoDB<br/>(Mongoose ODM)")]
 
     Client -- "RESTful JSON (Axios)" --> API
     Client -- "Multipart/Form-Data (Images)" --> API
