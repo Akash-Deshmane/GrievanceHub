@@ -132,9 +132,9 @@ JWT_SECRET=your_super_secret_jwt_key
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 👤 Author
-**Akash**
-- GitHub: [@your-username](https://github.com/your-username)
-- LinkedIn: [Your Profile](https://linkedin.com/in/your-profile)
+**Akash Deshmane**
+- GitHub: [Akash-Deshmane](https://github.com/Akash-Deshmane)
+- LinkedIn: [Akash Deshmane](https://www.linkedin.com/in/akash-deshmane-06796a31b/)
 
 <div align="center">
   <i>Built with ❤️ for better campus management.</i>
