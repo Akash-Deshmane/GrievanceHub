@@ -15,13 +15,23 @@
 
   **A comprehensive, full-stack campus grievance management platform engineered with the MERN stack, built to modernize and streamline the issue resolution pipeline for educational institutions. Designed to demonstrate a production-ready application architecture — featuring JWT-secured Role-Based Access Control (RBAC), multi-part file uploads, RESTful API design, and a fully dynamic multi-theme React interface.**
 
-  [Architecture](#architecture) • [Features](#features) • [Roles & Permissions](#roles--permissions) • [Tech Stack](#tech-stack) • [Getting Started](#getting-started) • [Roadmap](#roadmap)
-
 </div>
 
 ---
 
-## 🏗 Architecture
+## 📋 Table of Contents
+- [Architecture Overview](#-architecture-overview)
+- [Features](#-features)
+- [Database Design](#️-database-design)
+- [Authentication & Authorization](#-authentication--authorization)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [Environment Variables](#-environment-variables)
+- [Future Enhancements](#-future-enhancements)
+- [License](#-license)
+- [Author](#-author)
+
+## 🏗 Architecture Overview
 GrievanceHub utilizes a modern three-tier architecture that completely decouples the client interface from the backend business logic and database.
 
 ```mermaid
@@ -45,13 +55,13 @@ graph TD
 - **Local File Management:** Secure implementation of `multer` disk storage allowing users to attach evidence images to complaints and update their profile pictures.
 - **Real-Time Status Tracking:** End-to-end transparency where students can view their grievance lifecycle (Pending ➔ In Progress ➔ Resolved).
 
-## 🗄️ Database Architecture
+## 🗄️ Database Design
 The MongoDB database uses a highly relational NoSQL structure, utilizing `ObjectId` references to bind entities together efficiently:
 - **Users:** Stores encrypted credentials, RBAC roles (`student`, `dept_admin`, `super_admin`), and avatar references.
 - **Departments & Categories:** Maps organizational units (e.g., IT, Academics, Hostel) to route complaints to the correct administrators automatically.
 - **Complaints:** The core transaction collection. It tracks the grievance lifecycle, mapping `student` to a `department` and dynamically logging status updates over time.
 
-## 🔐 Roles & Permissions
+## 🔐 Authentication & Authorization
 The system enforces strict Role-Based Access Control (RBAC) across three primary entities:
 1. **Student:** Can submit new grievances, upload attachments, and track the real-time status of their own complaints.
 2. **Department Admin:** Assigned to specific sectors (e.g., IT, Hostel, Academics). They review, update statuses, and resolve complaints routed to their department.
@@ -102,13 +112,29 @@ Make sure you have [Node.js](https://nodejs.org/) and [MongoDB](https://www.mong
 4. **Open the Application:**
    Navigate to `http://localhost:5173` in your browser.
 
-## 🗺 Roadmap
+## 🌍 Environment Variables
+To run this project locally, you will need to add the following environment variables to your `Back-end/.env` file:
+```env
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/grievancehub
+JWT_SECRET=your_super_secret_jwt_key
+```
+
+## 🗺 Future Enhancements
 - [x] Establish base MERN architecture.
 - [x] Implement JWT Authentication & RBAC.
 - [x] Build multi-mode theme engine (Light/Dark/Night).
 - [x] Integrate file uploads (Profile + Evidence).
 - [ ] Add email notifications (Nodemailer) on status change.
 - [ ] Deploy to Render & MongoDB Atlas.
+
+## 📝 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👤 Author
+**Akash**
+- GitHub: [@your-username](https://github.com/your-username)
+- LinkedIn: [Your Profile](https://linkedin.com/in/your-profile)
 
 <div align="center">
   <i>Built with ❤️ for better campus management.</i>
