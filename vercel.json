@@ -1,0 +1,20 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "buildCommand": "cd Front-end && npm install && npm run build",
+  "outputDirectory": "Front-end/dist",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/uploads/:path*",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/((?!api/|uploads/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

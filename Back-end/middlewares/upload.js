@@ -1,10 +1,23 @@
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+
+const getUploadDir = (folder) => {
+  const baseDir = process.env.VERCEL ? path.join('/tmp', folder) : path.join('uploads', folder);
+  if (!fs.existsSync(baseDir)) {
+    try {
+      fs.mkdirSync(baseDir, { recursive: true });
+    } catch (e) {
+      // ignore
+    }
+  }
+  return baseDir;
+};
 
 // Storage for Complaints
 const complaintStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/complaints');
+    cb(null, getUploadDir('complaints'));
   },
   filename: function (req, file, cb) {
     cb(null, 'complaint-' + Date.now() + path.extname(file.originalname));
@@ -14,7 +27,7 @@ const complaintStorage = multer.diskStorage({
 // Storage for Profiles
 const profileStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/profiles');
+    cb(null, getUploadDir('profiles'));
   },
   filename: function (req, file, cb) {
     cb(null, 'profile-' + Date.now() + path.extname(file.originalname));

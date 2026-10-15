@@ -52,6 +52,9 @@ app.get('/api/health', (req, res) => {
 // Serve static files from the uploads directory
 const path = require('path');
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+if (process.env.VERCEL) {
+  app.use('/uploads', express.static('/tmp'));
+}
 
 // ─── API Routes ───────────────────────────────────────────
 app.use('/api/auth', authRoutes);

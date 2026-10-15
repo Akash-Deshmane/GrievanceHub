@@ -1,0 +1,31 @@
+{
+  "name": "grievancehub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Campus Query & Resolution System - MERN Stack",
+  "scripts": {
+    "build": "cd Front-end && npm install && npm run build",
+    "start": "cd Back-end && npm start",
+    "server": "cd Back-end && npm run dev",
+    "client": "cd Front-end && npm run dev",
+    "dev": "npm run server"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^1.41.3",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.6",
+    "debug": "~2.6.9",
+    "dotenv": "^17.4.2",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-validator": "^7.3.2",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.9.1",
+    "morgan": "~1.9.1",
+    "multer": "^2.2.0",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^9.0.3"
+  }
+}
