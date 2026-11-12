@@ -68,6 +68,20 @@ if (process.env.VERCEL) {
   app.use('/uploads', express.static('/tmp'));
 }
 
+// ─── Ensure MongoDB Connection (for serverless / Vercel Services) ──
+app.use('/api', async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            message: 'Database connection failed. Please verify MONGO_URI is configured.',
+            error: process.env.NODE_ENV === 'development' ? err.message : undefined,
+        });
+    }
+});
+
 // ─── API Routes ───────────────────────────────────────────
 app.use('/api/auth', authRoutes);
 app.use('/api/complaints', complaintRoutes);

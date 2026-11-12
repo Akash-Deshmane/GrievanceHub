@@ -1,20 +1,28 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "version": 2,
-  "buildCommand": "cd Front-end && npm install && npm run build",
-  "outputDirectory": "Front-end/dist",
+  "services": {
+    "back-end": {
+      "root": "Back-end",
+      "framework": "express",
+      "entrypoint": "app.js"
+    },
+    "front-end": {
+      "root": "Front-end",
+      "framework": "vite"
+    }
+  },
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "/api/index.js"
+      "source": "/api/(.*)",
+      "destination": { "service": "back-end" }
     },
     {
-      "source": "/uploads/:path*",
-      "destination": "/api/index.js"
+      "source": "/uploads/(.*)",
+      "destination": { "service": "back-end" }
     },
     {
-      "source": "/((?!api/|uploads/).*)",
-      "destination": "/index.html"
+      "source": "/(.*)",
+      "destination": { "service": "front-end" }
     }
   ]
 }
