@@ -64,10 +64,10 @@ const handleComplaintUpload = (req, res, next) => {
     }
     if (err) return res.status(400).json({ success: false, message: err.message });
     
-    // Normalize paths to use forward slashes so they work everywhere
+    // Normalize paths to use forward slashes and map /tmp to uploads/ for Vercel
     if (req.files && req.files.length > 0) {
       req.files.forEach(f => {
-        f.path = f.path.replace(/\\/g, '/');
+        f.path = f.path.replace(/\\/g, '/').replace(/^\/tmp\//, 'uploads/');
       });
     }
     next();
@@ -78,7 +78,7 @@ const handleProfileUpload = (req, res, next) => {
   uploadProfileImage(req, res, (err) => {
     if (err) return res.status(400).json({ success: false, message: err.message });
     if (req.file) {
-      req.file.path = req.file.path.replace(/\\/g, '/');
+      req.file.path = req.file.path.replace(/\\/g, '/').replace(/^\/tmp\//, 'uploads/');
     }
     next();
   });

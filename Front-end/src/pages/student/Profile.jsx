@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../context/AuthContext';
 import API from '../../api/axios';
+import { getImageUrl } from '../../utils/imageUrl';
 import { MdPerson, MdEmail, MdPhone, MdLock, MdSave } from 'react-icons/md';
 
 export default function Profile() {
@@ -63,7 +64,7 @@ export default function Profile() {
         <div className="flex items-center gap-4">
           <label className="relative w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 cursor-pointer overflow-hidden group">
             {profilePicPreview || user?.profileImage ? (
-              <img src={profilePicPreview || (user.profileImage.startsWith('http') ? user.profileImage : `http://localhost:5000/${user.profileImage.replace(/^\/+/, '')}`)} alt="Profile" className="w-full h-full object-cover" />
+              <img src={profilePicPreview || getImageUrl(user.profileImage)} alt="Profile" className="w-full h-full object-cover" />
             ) : (
               <div className="w-full h-full bg-blue-600 flex items-center justify-center text-white text-3xl font-bold">
                 {user?.name?.charAt(0).toUpperCase()}
